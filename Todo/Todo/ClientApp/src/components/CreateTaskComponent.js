@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import "./Counter.css"
+import "./CreateTaskComponent.css"
 
-export class Counter extends Component {
-  static displayName = Counter.name;
-
+export class CreateTaskComponent extends Component {
   constructor(props) {
     super(props);
     this.state = 
@@ -14,13 +12,6 @@ export class Counter extends Component {
       time: undefined,
 
     };
-    this.incrementCounter = this.incrementCounter.bind(this);
-  }
-
-  incrementCounter() {
-    this.setState({
-      currentCount: this.state.currentCount + 1
-    });
   }
 
   handleSubmitButtonClick = async () => {
@@ -39,7 +30,7 @@ export class Counter extends Component {
       },
       body: JSON.stringify(request)
     }
-    const response = await fetch('/tasks/add', options);
+    const response = await fetch('/tasks', options);
   }
 
   priorities = [
@@ -59,11 +50,13 @@ export class Counter extends Component {
   handleDateChange = (event) => {
     this.setState({date: event.target.value})
   }
+
   handleTimeChange = (event) => {
     this.setState({time: event.target.value})
   }
+
   render() {
-    let { taskName, priority, date, time } = this.state;
+    const { taskName, priority, date, time } = this.state;
     return (
       <div>
         <h1>

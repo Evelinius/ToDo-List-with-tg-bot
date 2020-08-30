@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Todo.TelegramBot;
 
 namespace Todo
 {   
@@ -29,6 +30,9 @@ namespace Todo
             {
                 configuration.RootPath = "ClientApp/build";
             });
+
+            services.AddSingleton<ITelegramBotApi, TelegramBotApi>();
+            services.AddSingleton<BotUserRegistrationHelper>();
 
             services.AddDbContext<ToDoDatabaseContext>();
         }
@@ -69,6 +73,8 @@ namespace Todo
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });
+
+            app.ApplicationServices.GetService<ITelegramBotApi>().Setup();
         }
     }
 }

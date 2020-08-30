@@ -1,0 +1,9 @@
+.deal-card {
+    margin-bottom: 24px;
+    width: 700px;
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    padding: 8px
+  }
